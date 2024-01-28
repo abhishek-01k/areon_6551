@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "@thirdweb-dev/chains": "^0.1.65",
+    "@thirdweb-dev/react": "^4.4.0",
+    "@thirdweb-dev/sdk": "^4.0.28"
+  }
+}
