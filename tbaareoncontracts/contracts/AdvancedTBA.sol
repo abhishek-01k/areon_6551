@@ -20,8 +20,8 @@ import "@thirdweb-dev/contracts/eip/ERC1271.sol";
 import "@thirdweb-dev/contracts/external-deps/openzeppelin/utils/cryptography/ECDSA.sol";
 import "@thirdweb-dev/contracts/prebuilts/account/utils/BaseAccountFactory.sol";
 
-import "erc6551/lib/ERC6551AccountLib.sol";
-import "erc6551/interfaces/IERC6551Account.sol";
+// import "../contracts/lib/ERC6551AccountLib.sol";
+// import "../contracts/interfaces/IERC6551Account.sol";
 
 import "@thirdweb-dev/contracts/eip/interface/IERC721.sol";
 
@@ -82,6 +82,8 @@ contract AdvancedTBA is
     function initialize(address _defaultAdmin, bytes calldata _data) public virtual initializer {
         emit TokenBoundAccountCreated(_defaultAdmin, _data);
     }
+
+    function nonce();
 
     /// @notice Returns whether a signer is authorized to perform transactions using the wallet.
     function isValidSigner(address _signer, UserOperation calldata) public view returns (bool) {

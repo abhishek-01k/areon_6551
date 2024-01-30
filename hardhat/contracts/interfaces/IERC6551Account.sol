@@ -29,4 +29,5 @@ interface IERC6551Account {
     function owner() external view returns (address);
 
     function nonce() external view returns (uint256);
+
 }
