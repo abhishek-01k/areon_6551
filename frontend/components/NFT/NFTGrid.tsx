@@ -1,7 +1,7 @@
 import type { NFT as NFTType } from "@thirdweb-dev/sdk";
 import Link from "next/link";
 import React from "react";
-import { nftDropAddress } from "../../const/constants";
+import { nftDropAddress } from "../../constants";
 import Skeleton from "../Skeleton/Skeleton";
 import NFT from "./NFT";
 import styles from "../../styles/Main.module.css";

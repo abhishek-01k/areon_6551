@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import styles from "../styles/Main.module.css";
+import styles from "../../styles/Main.module.css";
 import NFTGrid from "../../components/NFT/NFTGrid";
 import {
   ConnectWallet,

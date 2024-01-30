@@ -9,7 +9,7 @@ import {
   import { GetStaticProps, GetStaticPaths } from "next";
   import { NFT, ThirdwebSDK } from "@thirdweb-dev/sdk";
   import { activeChain, nftDropAddress } from "../../../../constants";
-  import styles from "../../../styles/Token.module.css";
+  import styles from "../../../../styles/Token.module.css";
   import { Toaster } from "react-hot-toast";
   import { Signer } from "ethers";
   import newSmartWallet from "../../../../components/SmartWallet/SmartWallet";
