@@ -1,4 +1,8 @@
-Introducing the concept of TokenBound Accounts (TBA) to the Areon Blockchain -> a groundbreaking advancement in the Areon with NFTs and Defi. Let's explore this innovative idea in more detail:
+## TBA on Areon "Empowering the residents of the AreonCity to take actions"
+
+Introducing the concept of TokenBound Accounts (TBA) to the Areon Blockchain 
+
+-> a groundbreaking advancement in the Areon with NFTs and Defi. Let's explore this innovative idea in more detail:
 
 ### Overview of TokenBound Accounts (TBA) on Areon Blockchain
 
