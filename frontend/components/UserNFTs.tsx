@@ -1,6 +1,7 @@
+"use client";
 import type { NextPage } from "next";
-import styles from "../../styles/Main.module.css";
-import NFTGrid from "../../components/NFT/NFTGrid";
+import styles from "../styles/Main.module.css";
+import NFTGrid from "../components/NFT/NFTGrid";
 import {
   ConnectWallet,
   Web3Button,
@@ -8,15 +9,15 @@ import {
   useContract,
   useOwnedNFTs,
 } from "@thirdweb-dev/react";
-import { nftDropAddress } from "../../constants";
-import Container from "../../components/Container/Container";
+import { nftDropAddress } from "../constants";
+import Container from "../components/Container/Container";
 import toast from "react-hot-toast";
 import { toastStyle } from "@/lib/utils";
 
 /**
  * The home page of the application.
  */
-const Home: NextPage = () => {
+const UserNFTs = () => {
   const address = useAddress();
   const { contract: nftDropContract } = useContract(nftDropAddress, "nft-drop");
   const { data: nfts, isLoading } = useOwnedNFTs(nftDropContract, address);
@@ -37,29 +38,6 @@ const Home: NextPage = () => {
               "Looks like you don't own any NFTs. Did you import your contract on the thirdweb dashboard? https://thirdweb.com/dashboard"
             }
           />
-          <div className={styles.btnContainer}>
-            <Web3Button
-              contractAddress={nftDropAddress}
-              action={async (contract) => await contract?.erc721.claim(1)}
-              onSuccess={() => {
-                toast("NFT Claimed!", {
-                  icon: "✅",
-                  style: toastStyle,
-                  position: "bottom-center",
-                });
-              }}
-              onError={(e) => {
-                console.log(e);
-                toast(`NFT Claim Failed! Reason: ${e.message}`, {
-                  icon: "❌",
-                  style: toastStyle,
-                  position: "bottom-center",
-                });
-              }}
-            >
-              Claim NFT
-            </Web3Button>
-          </div>
         </div>
       ) : (
         <div className={styles.container}>
@@ -71,4 +49,4 @@ const Home: NextPage = () => {
   );
 };
 
-export default Home;
+export default UserNFTs;
