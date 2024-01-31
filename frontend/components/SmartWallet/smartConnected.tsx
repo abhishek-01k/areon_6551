@@ -30,6 +30,8 @@ const ClaimTokens = () => {
   const { data: tokenBalance, isLoading: loadingBalance } =
     useBalance(tokenAddress);
 
+  console.log("Token balance", tokenBalance, tokenAddress);
+
   return (
     <div className={style.walletContainer}>
       {address ? (

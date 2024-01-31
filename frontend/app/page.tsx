@@ -14,7 +14,7 @@ export default function IndexPage() {
           <p className="ml-4 text-xl font-extrabold leading-tight tracking-wide md:text-xl">
             Pour <span className="text-orange-500">Life</span>  into your
           </p>
-          <h1 className="text-4xl font-extrabold leading-tight tracking-tighter text-yellow-500 md:text-8xl">
+          <h1 className="bg-gradient-to-r from-yellow-400 to-red-500 bg-clip-text text-4xl font-extrabold leading-tight tracking-tighter text-transparent md:text-8xl">
             Areon NFTs
           </h1>
         </div>
@@ -30,7 +30,6 @@ export default function IndexPage() {
 
 
       <HomeCard />
-      <UserNFTs />
     </section>
   )
 }
