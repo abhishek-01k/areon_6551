@@ -11,10 +11,16 @@ import { NFT, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { activeChain, nftDropAddress } from "../../../../constants";
 import styles from "../../../../styles/Token.module.css";
 import { Toaster } from "react-hot-toast";
-import { Signer } from "ethers";
+import { Signer, ethers } from "ethers";
 import newSmartWallet from "../../../../components/SmartWallet/SmartWallet";
 import SmartWalletConnected from "../../../../components/SmartWallet/smartConnected";
 import { useParams } from 'next/navigation';
+import { Web3Button } from "@thirdweb-dev/react";
+import {
+    TWApiKey,
+    factoryAddress,
+    implementation,
+  } from "../../../../constants";
 
 export default function TokenPage() {
   const [nft, setNft] = useState<NFT | null>(null);
@@ -25,11 +31,7 @@ export default function TokenPage() {
   const address = useAddress();
   const wallet = useWallet();
   const params = useParams();
-
   const tokenId = params.token;
-  console.log(tokenId);
-
-  console.log(nft, params);
 
   useEffect(() => {
 
@@ -99,7 +101,17 @@ export default function TokenPage() {
               )}
               <h1 className={styles.title}>{nft?.metadata.name}</h1>
               <p className={styles.collectionName}>Token ID #{nft?.metadata.id}</p>
-              <p>Your {nft.metadata.name} address is {smartWalletAddress}</p>
+
+              <p className={styles.nftOwnerInfo}>Your {nft.metadata.name} address is {smartWalletAddress}</p>
+
+              <Web3Button
+                contractAddress="0x8F7EfCf59c8cc78717487a8B6d4d4143429B3F8e"
+                action={(contract) => {
+                    contract.call("createAccount", [implementation, activeChain.chainId, nftDropAddress, tokenId, 0, ethers.utils.toUtf8Bytes("")])
+                }}
+                >
+                Bring to Life ⛲
+                </Web3Button>
               {smartWalletAddress ? (
                 <SmartWalletConnected signer={signer} />
               ) : (

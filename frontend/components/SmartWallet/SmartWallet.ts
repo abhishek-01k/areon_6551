@@ -23,7 +23,10 @@ export default function newSmartWallet(token: NFT) {
         factory: SmartContract<BaseContract>,
         owner: string
       ) => {
-        const account = factory.prepare("createAccount", [
+
+        console.log("creating account");
+
+        const account = factory.call("createAccount", [
           implementation,
           activeChain.chainId,
           nftDropAddress,
@@ -34,6 +37,8 @@ export default function newSmartWallet(token: NFT) {
         console.log("here", account);
         return account;
       }, // the factory method to call to create a new account
+
+
       getAccountAddress: async (
         factory: SmartContract<BaseContract>,
         owner: string

@@ -7,4 +7,4 @@ export const TWApiKey: string = '7a023c31cebbd59b3a6879fd40cc931ae97fb7e5764df94
 export const activeChain: Chain = AreonNetworkTestnet
 
 export const nftDropAddress: string = '0xD136a9D8136A2B36f59908235dCF4bc863BE3ff1'
-export const tokenAddress: string = '0x006eF094e2DF803074Ef7Bce35994771a87a6fca'
+export const tokenAddress: string = '0xBb4F7FA1e4BD06CE50974B655842A3c939a6c391' // TUSDT

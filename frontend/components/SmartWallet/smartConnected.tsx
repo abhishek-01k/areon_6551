@@ -10,6 +10,7 @@ import { Signer } from "ethers";
 import style from "../../styles/Token.module.css";
 import toast from "react-hot-toast";
 import { toastStyle } from "@/lib/utils";
+
 interface ConnectedProps {
   signer: Signer | undefined;
 }
@@ -31,18 +32,17 @@ const ClaimTokens = () => {
 
   return (
     <div className={style.walletContainer}>
-      <h2>This is Your Token Bound Smart Wallet!</h2>
       {address ? (
         loadingBalance ? (
           <h2>Loading Balance...</h2>
         ) : (
           <div className={style.pricingContainer}>
-            <h2>Balance: {tokenBalance?.displayValue}</h2>
+            <h2> Balance: {tokenBalance?.displayValue} TUSDT</h2>
             <Web3Button
               contractAddress={tokenAddress}
               action={async (contract) => await contract.erc20.claim(10)}
               onSuccess={() => {
-                toast(`NFT Claimed!`, {
+                toast(`Token Claimed!`, {
                   icon: "✅",
                   style: toastStyle,
                   position: "bottom-center",
@@ -50,7 +50,7 @@ const ClaimTokens = () => {
               }}
               onError={(e) => {
                 console.log(e);
-                toast(`NFT Claim Failed! Reason: ${(e as any).reason}`, {
+                toast(`Token Claim Failed! Reason: ${(e as any).reason}`, {
                   icon: "❌",
                   style: toastStyle,
                   position: "bottom-center",
