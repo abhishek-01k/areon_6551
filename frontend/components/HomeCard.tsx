@@ -8,6 +8,11 @@ import {
     CardTitle,
 } from "@/components/ui/card"
 import { Button } from './ui/button';
+import RevNFTs from 'assets/RevNFTs.png';
+import storyNFT from 'assets/storyNFT.png';
+import nftDash from 'assets/nftdashborad.png';
+import dashboardNFT from 'assets/dashboardNFT.png';
+import Image from 'next/image';
 
 const HomeCard = () => {
     return (
@@ -18,10 +23,10 @@ const HomeCard = () => {
                     <CardDescription>Link up with your Areon NFTs and own other assets like ARC20, ARC721, etc. Make your onchain history with your NFTs.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p>Card Content</p>
+                    <Image src={nftDash} alt='Rev NFTs' />
                 </CardContent>
                 <CardFooter>
-                    <Button>Connect your NFT</Button>
+                    <Button className='bg-gradient-to-r from-yellow-500 to-orange-500'>Connect your NFT</Button>
                 </CardFooter>
             </Card>
 
@@ -31,10 +36,10 @@ const HomeCard = () => {
                     <CardDescription>Innovative and Attractive Interface for your NFTs and display the information contained within an NFTs token-bound account.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p>Card Content</p>
+                    <Image src={dashboardNFT} alt='Dashboard NFTs' />
                 </CardContent>
                 <CardFooter>
-                    <Button>View Your Assets</Button>
+                    <Button className='bg-gradient-to-r from-cyan-500 to-blue-500'>View Your Assets</Button>
                 </CardFooter>
             </Card>
 
@@ -45,10 +50,10 @@ const HomeCard = () => {
                     <CardDescription>Now, each NFT has the capability to possess its unique story, paving the way for more intricate narratives and endless possibilities on the blockchain.</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <p>Card Content</p>
+                    <Image src={storyNFT} alt='Story NFTs' />
                 </CardContent>
                 <CardFooter>
-                    <Button>Start Storytelling</Button>
+                    <Button className='bg-gradient-to-r from-pink-500 to-yellow-500'>Start Storytelling</Button>
                 </CardFooter>
             </Card>
 
