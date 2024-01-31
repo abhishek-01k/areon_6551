@@ -22,7 +22,7 @@ export default function NFTComponent({ nft }: Props) {
 
   const text = nft.metadata.description;
 
-  if (text.length <= 50) {
+  if (text && text.length <= 50) {
     return <span>{text}</span>;
   }
 
@@ -37,7 +37,7 @@ export default function NFTComponent({ nft }: Props) {
         </p>
 
         <span className="">
-          {isReadMoreShown ? text : `${text.substring(0, 150)}...`}
+          {isReadMoreShown ? text : `${text?.substring(0, 150)}...`}
           <button className="ml-2 cursor-pointer text-[18px] text-gray-400 hover:underline" onClick={toggleReadMore}>
             {isReadMoreShown ? 'Read Less' : 'Read More'}
           </button>
