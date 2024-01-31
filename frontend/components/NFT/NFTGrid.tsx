@@ -5,6 +5,7 @@ import { nftDropAddress } from "../../constants";
 import Skeleton from "../Skeleton/Skeleton";
 import NFT from "./NFT";
 import styles from "../../styles/Main.module.css";
+import { cn } from "@/lib/utils";
 
 type Props = {
   isLoading: boolean;
@@ -29,13 +30,13 @@ export default function NFTGrid({
         ))
       ) : nfts && nfts.length > 0 ? (
         nfts.map((nft) => (
-          <Link
-            href={`/token/${nftDropAddress}/${nft.metadata.id}`}
+          <div
+            // href={`/token/${nftDropAddress}/${nft.metadata.id}`}
             key={nft.metadata.id}
-            className={styles.nftContainer}
+            className={cn(styles.nftContainer, "border-2")}
           >
             <NFT nft={nft} />
-          </Link>
+          </div>
         ))
       ) : (
         <p>{emptyText}</p>

@@ -26,7 +26,7 @@ const HomeCard = () => {
                     <Image src={nftDash} alt='Rev NFTs' />
                 </CardContent>
                 <CardFooter>
-                    <Button className='bg-gradient-to-r from-yellow-500 to-orange-500'>Connect your NFT</Button>
+                    <Button className='bg-gradient-to-r from-yellow-500 to-orange-500 text-gray-700 hover:text-white'>Connect your NFT</Button>
                 </CardFooter>
             </Card>
 
@@ -39,21 +39,21 @@ const HomeCard = () => {
                     <Image src={dashboardNFT} alt='Dashboard NFTs' />
                 </CardContent>
                 <CardFooter>
-                    <Button className='bg-gradient-to-r from-cyan-500 to-blue-500'>View Your Assets</Button>
+                    <Button className='bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-700 hover:text-white'>View Your Assets</Button>
                 </CardFooter>
             </Card>
 
 
             <Card className='flex flex-1 flex-col'>
                 <CardHeader className='flex flex-col gap-2'>
-                    <CardTitle>Built a storytelling</CardTitle>
-                    <CardDescription>Now, each NFT has the capability to possess its unique story, paving the way for more intricate narratives and endless possibilities on the blockchain.</CardDescription>
+                    <CardTitle>Interact with Areon Metaverse</CardTitle>
+                    <CardDescription>Now, each NFT has the capability to possess its unique story, paving the way for more intricate narratives and endless possibilities on the Areon Metaverse.</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <Image src={storyNFT} alt='Story NFTs' />
                 </CardContent>
                 <CardFooter>
-                    <Button className='bg-gradient-to-r from-pink-500 to-yellow-500'>Start Storytelling</Button>
+                    <Button className='bg-gradient-to-r from-pink-500 to-yellow-500 text-gray-700 hover:text-white'>Start Storytelling</Button>
                 </CardFooter>
             </Card>
 
