@@ -1,13 +1,12 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import {
   MediaRenderer,
   ThirdwebNftMedia,
   useAddress,
   useWallet,
 } from "@thirdweb-dev/react";
-import React, { useEffect, useState } from "react";
 import Container from "../../../../components/Container/Container";
-import { GetStaticProps, GetStaticPaths } from "next";
 import { NFT, ThirdwebSDK } from "@thirdweb-dev/sdk";
 import { activeChain, nftDropAddress } from "../../../../constants";
 import styles from "../../../../styles/Token.module.css";
@@ -15,25 +14,48 @@ import { Toaster } from "react-hot-toast";
 import { Signer } from "ethers";
 import newSmartWallet from "../../../../components/SmartWallet/SmartWallet";
 import SmartWalletConnected from "../../../../components/SmartWallet/smartConnected";
+import { useParams } from 'next/navigation';
 
-type Props = {
-  nft: NFT;
-  contractMetadata: any;
-};
-
-export default function TokenPage({ nft, contractMetadata }: Props) {
-  const [smartWalletAddress, setSmartWalletAddress] = useState<string | null>(
-    null
-  );
+export default function TokenPage() {
+  const [nft, setNft] = useState<NFT | null>(null);
+  const [contractMetadata, setContractMetadata] = useState<any>(null);
+  const [smartWalletAddress, setSmartWalletAddress] = useState<string | null>(null);
   const [signer, setSigner] = useState<Signer>();
 
-  // get the currently connected wallet
   const address = useAddress();
   const wallet = useWallet();
+  const params = useParams();
+
+  const tokenId = params.token;
+  console.log(tokenId);
+
+  console.log(nft, params);
+
+  useEffect(() => {
+
+    const fetchNftData = async () => {
+      if (!tokenId) return;
+
+      const sdk = new ThirdwebSDK(activeChain);
+      const contract = await sdk.getContract(nftDropAddress);
+
+      try {
+        const fetchedNft = await contract.erc721.get(tokenId.toString());
+        setNft(fetchedNft);
+        const metadata = await contract.metadata.get();
+        setContractMetadata(metadata);
+      } catch (error) {
+        console.error("Error fetching NFT data:", error);
+      }
+    };
+
+    fetchNftData();
+  }, [params?.isReady, params?.token]);
+
 
   // create a smart wallet for the NFT
   useEffect(() => {
-    const createSmartWallet = async (nft: NFT) => {
+    const createSmartWallet = async (nft: NFT | null) => {
       if (nft && smartWalletAddress == null && address && wallet) {
         const smartWallet = newSmartWallet(nft);
         console.log("personal wallet", address);
@@ -52,88 +74,45 @@ export default function TokenPage({ nft, contractMetadata }: Props) {
     createSmartWallet(nft);
   }, [nft, smartWalletAddress, address, wallet]);
 
-  console.log("NFT >>>>>>", nft);
-
   return (
     <>
       <Toaster position="bottom-center" reverseOrder={false} />
-      <Container maxWidth="lg">
-        <div className={styles.container}>
-          <div className={styles.metadataContainer}>
-            <ThirdwebNftMedia
-              metadata={nft.metadata}
-              className={styles.image}
-            />
-          </div>
+      {nft &&
+        <Container maxWidth="lg">
+          <div className={styles.container}>
+            <div className={styles.metadataContainer}>
+              <ThirdwebNftMedia
+                metadata={nft?.metadata}
+                className={styles.image}
+              />
+            </div>
 
-          <div className={styles.listingContainer}>
-            {contractMetadata && (
-              <div className={styles.contractMetadataContainer}>
-                <MediaRenderer
-                  src={contractMetadata.image}
-                  className={styles.collectionImage}
-                />
-                <p className={styles.collectionName}>{contractMetadata.name}</p>
-              </div>
-            )}
-            <h1 className={styles.title}>{nft.metadata.name}</h1>
-            <p className={styles.collectionName}>Token ID #{nft.metadata.id}</p>
-            {smartWalletAddress ? (
-              <SmartWalletConnected signer={signer} />
-            ) : (
-              <div className={styles.btnContainer}>
-                <p>Loading...</p>
-              </div>
-            )}
+            <div className={styles.listingContainer}>
+              {contractMetadata && (
+                <div className={styles.contractMetadataContainer}>
+                  <MediaRenderer
+                    src={contractMetadata.image}
+                    className={styles.collectionImage}
+                  />
+                  <p className={styles.collectionName}>{contractMetadata.name}</p>
+                </div>
+              )}
+              <h1 className={styles.title}>{nft?.metadata.name}</h1>
+              <p className={styles.collectionName}>Token ID #{nft?.metadata.id}</p>
+              <p>Your {nft.metadata.name} address is {smartWalletAddress}</p>
+              {smartWalletAddress ? (
+                <SmartWalletConnected signer={signer} />
+              ) : (
+                <div className={styles.btnContainer}>
+                  <p>Loading...</p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      }
     </>
   );
 }
 
-// export const getStaticProps: GetStaticProps = async (context) => {
-//   const tokenId = context.params?.tokenId as string;
 
-//   const sdk = new ThirdwebSDK(activeChain);
-
-//   const contract = await sdk.getContract(nftDropAddress);
-
-//   const nft = await contract.erc721.get(tokenId);
-
-//   let contractMetadata;
-
-//   try {
-//     contractMetadata = await contract.metadata.get();
-//   } catch (e) { }
-
-//   return {
-//     props: {
-//       nft,
-//       contractMetadata: contractMetadata || null,
-//     },
-//     revalidate: 1, // https://nextjs.org/docs/basic-features/data-fetching/incremental-static-regeneration
-//   };
-// };
-
-// export const getStaticPaths: GetStaticPaths = async () => {
-//   const sdk = new ThirdwebSDK(activeChain);
-
-//   const contract = await sdk.getContract(nftDropAddress);
-
-//   const nfts = await contract.erc721.getAll();
-
-//   const paths = nfts.map((nft) => {
-//     return {
-//       params: {
-//         contractAddress: nftDropAddress,
-//         tokenId: nft.metadata.id,
-//       },
-//     };
-//   });
-
-//   return {
-//     paths,
-//     fallback: "blocking", // can also be true or 'blocking'
-//   };
-// };
