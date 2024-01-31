@@ -102,7 +102,7 @@ export default function TokenPage() {
               <h1 className={styles.title}>{nft?.metadata.name}</h1>
               <p className={styles.collectionName}>Token ID #{nft?.metadata.id}</p>
 
-              <p className={styles.nftOwnerInfo}>Your {nft.metadata.name} address is {smartWalletAddress}</p>
+              <p className="p-4">Your {nft.metadata.name} address is {smartWalletAddress}</p>
 
               <Web3Button
                 contractAddress="0x8F7EfCf59c8cc78717487a8B6d4d4143429B3F8e"

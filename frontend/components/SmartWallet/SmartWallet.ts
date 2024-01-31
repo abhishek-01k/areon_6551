@@ -19,26 +19,7 @@ export default function newSmartWallet(token: NFT) {
     factoryAddress: factoryAddress, // your own deployed account factory address
     gasless: false, // enable or disable gasless transactions
     factoryInfo: {
-      createAccount: async (
-        factory: SmartContract<BaseContract>,
-        owner: string
-      ) => {
-
-        console.log("creating account");
-
-        const account = factory.call("createAccount", [
-          implementation,
-          activeChain.chainId,
-          nftDropAddress,
-          token.metadata.id,
-          0,
-          ethers.utils.toUtf8Bytes("")
-        ]);
-        console.log("here", account);
-        return account;
-      }, // the factory method to call to create a new account
-
-
+      
       getAccountAddress: async (
         factory: SmartContract<BaseContract>,
         owner: string
