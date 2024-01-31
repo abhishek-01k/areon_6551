@@ -18,8 +18,8 @@ export default function newSmartWallet(token: NFT) {
     chain: activeChain, // the chain where your smart wallet will be or is deployed
     factoryAddress: factoryAddress, // your own deployed account factory address
     gasless: false, // enable or disable gasless transactions
+    //@ts-ignore
     factoryInfo: {
-      
       getAccountAddress: async (
         factory: SmartContract<BaseContract>,
         owner: string
