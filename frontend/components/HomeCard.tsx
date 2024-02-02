@@ -13,6 +13,7 @@ import storyNFT from 'assets/storyNFT.png';
 import nftDash from 'assets/nftdashborad.png';
 import dashboardNFT from 'assets/dashboardNFT.png';
 import Image from 'next/image';
+import Link from 'next/link';
 
 const HomeCard = () => {
     return (
@@ -39,7 +40,11 @@ const HomeCard = () => {
                     <Image src={dashboardNFT} alt='Dashboard NFTs' />
                 </CardContent>
                 <CardFooter>
-                    <Button className='bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-700 hover:text-white'>View Your Assets</Button>
+                    <Link href='/nfts'>
+                        <Button className='bg-gradient-to-r from-cyan-500 to-blue-500 text-gray-700 hover:text-white'>
+                            View Your Assets
+                        </Button>
+                    </Link>
                 </CardFooter>
             </Card>
 
